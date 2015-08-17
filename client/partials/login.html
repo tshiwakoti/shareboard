@@ -1,0 +1,49 @@
+
+<style>
+
+#header{
+  margin: 30px 100px;
+  color: green;
+}
+#login, #register{
+  display: inline-block;
+  width: 400px;
+  margin-top: 50px;
+  vertical-align: top;
+}
+#login{
+  margin-left: 100px;
+}
+#register{
+  margin-left: 100px;
+}
+
+</style>
+<div id = "wrapper">
+  <div ng-controller ="login1">
+
+    <div id = "header">
+      <h3> Shareboard </h3>
+      <h5> Ideas Sharing Platform and Online Classroom </h5>
+    </div>
+
+    <div id = 'login'>
+      <div class ="form-group">
+        Email: <input type ="text" ng-model = "userlogin.email">
+        Password: <input type = "text" ng-model= "userlogin.password">
+        <input ng-click = "login()" type="submit" class="btn btn-primary" value="Login">​
+      </div>
+    </div>
+
+    <div id = "register">
+      <div class = "form-group" >
+        Name: <input type = "text" ng-model = "newUser.name">
+        Email: <input type = "email" ng-model = "newUser.email">
+        password : <input type = "text" ng-model = "newUser.password">
+        <input ng-click = 'register()' type="submit" class="btn btn-primary" value="Register">
+      </div>
+    </div>
+
+  </div>
+
+</div>

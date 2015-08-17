@@ -12,8 +12,8 @@ app.use(bodyParser.json());
 
 //requires when connecting clientside to serverside.
 //require mongoose file and route file from configs
-// require('./config/mongoose.js');
-// require('./config/routes.js')(app);
+require('./config/mongoose.js');
+require('./config/routes.js')(app);
 
 
 app.use(express.static(path.join(__dirname, './client')));
