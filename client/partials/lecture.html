@@ -1,0 +1,28 @@
+
+<style>
+#textarea{
+  width: 900px;
+  height: 400px;
+  border: 1px solid grey;
+}
+
+#margin{
+  margin: 100px;
+}
+</style>
+
+
+
+<div ng-controller = "login1">
+
+    <h4>Title:  {{title}} </h4>
+
+    <div class = "form-group">
+      <textarea id = "textarea" ng-model = 'new_lecture.lecture'> </textarea>
+      <a ng-click = 'addLecture()' type = "button" class="waves-effect waves-light btn">Submit</a>
+    </div>
+
+
+    <a type = "button" class="waves-effect waves-light btn">Share</a>
+
+</div>

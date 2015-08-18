@@ -13,23 +13,27 @@
 </style>
 
 
-<body>
+  <div  ng-controller = 'login1'>
   <div id = "wrapper">
-    <h3> Welcome John {{users.name}}</h3>
+    <h2 ng-bind = "loguser.name"></h2>
+    <h3> Welcome  {{loguser}}</h3>
     <!-- <input id = "logoff" type = "submit" value = "logofff"> -->
     <a href = '/' > logoff </a>
-    <h4> Presentation Title </h4>
-    <input type = "text">
-    <h4> Participants <h4>
-    <input type = "text">
-    <input type="submit" class="btn btn-primary" value="Create New Presentation">
+
+    <div class ="form-group">
+      <h4> Presentation Title </h4>
+      <input type = "text" ng-model = 'newPresentation.title'>
+      <h4> Participants <h4>
+      <input type = "text" ng-model = 'newPresentation.participants'>
+      <input ng-click = 'addPresentation()' type="submit" class="btn btn-primary" value="Create New Presentation">
+    </div>
+
 
 
     <h4> Your Presentations </h4>
-    <ul>
-       <a href = ""> presentation1 </a>
-       <a herf = ""> presentation2 </a>
-       <a herf = ""> presentation3 </a>​
-    </ul>
+    <div ng-repeat = "lecture in lectures">
+      <a ng-click="tolecture(lecture._id)" ng-bind = "lecture.title"> </a>
+    </div>
+
   </div>
-</body>
+</div>

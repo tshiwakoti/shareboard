@@ -10,6 +10,12 @@ shareboardapp.config(function($routeProvider){
   .when('/shareboard', {
     templateUrl: './partials/shareboard.html'
   })
+  .when('/lecture', {
+    templateUrl: './partials/lecture.html'
+  })
+  .when('/chatroom/:id', {
+    templateUrl: './partials/chatroom.html'
+  })
   .otherwise({
     redirectTo: '/'
   });

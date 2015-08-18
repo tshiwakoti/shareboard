@@ -1,5 +1,6 @@
 
 var users = require('./../server/controllers/users.js');
+var lectures = require('./../server/controllers/lectures.js');
 
 module.exports = function(shareboardapp){
 
@@ -12,6 +13,16 @@ module.exports = function(shareboardapp){
     users.show(req, res);
     // console.log('in routes');
     // console.log(req.body);
+  })
+
+  shareboardapp.post('/addLecture', function(req, res){
+    console.log(req.body);
+    lectures.addLecture(req, res);
+  })
+
+  shareboardapp.get('/showlectures', function(req, res){
+    lectures.showlectures(req, res);
+    console.log(req.body);
   })
 
 };
