@@ -3,17 +3,17 @@ var path        = require('path'),
     bodyParser  = require("body-parser"),
     app         = express();
 
+//var nodemailer = require('nodemailer');
+
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
 app.use(bodyParser.json());
 
-
-//requires when connecting clientside to serverside.
-//require mongoose file and route file from configs
 require('./config/mongoose.js');
 require('./config/routes.js')(app);
+
 
 
 app.use(express.static(path.join(__dirname, './client')));
