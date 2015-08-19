@@ -24,5 +24,4 @@ module.exports = function(shareboardapp){
     lectures.showlectures(req, res);
     console.log(req.body);
   })
-
 };

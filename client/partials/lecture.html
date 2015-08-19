@@ -7,18 +7,23 @@
 		//jquery to append text message to div and send to server
     $(document).keyup(function(){
 			// $(document).on('click', '#send', function(){
-				var text_val = $('#textarea1').val();
+				// var text_val = $('#textarea1').val();
+				var text_val = $('#textarea1').html().replace(/\s+/g, " ");
 				socket.emit("msg", {
-					message: $('#textarea1').val()
+					message: text_val
 				})
         //console.log(e);
 		})
 
-
-
-
-
-
+		$(document).click(function(){
+			// $(document).on('click', '#send', function(){
+				// var text_val = $('#textarea1').val();
+				var text_val = $('#textarea1').html().replace(/\s+/g, " ");
+				socket.emit("msg", {
+					message: text_val
+				})
+				//console.log(e);
+		})
 
 
 
@@ -27,9 +32,9 @@
 			var clean_string = value.replace(/\"/g, "")
 
 			// $('p').text(clean_string);
-			$('#textarea1').val(clean_string);
+			// $('#notes').val(clean_string);
+			$('#notes').html(clean_string);
 		});
-
 
 
 		return false;
@@ -76,7 +81,7 @@
 
 
   <script>
-//
+
 // $(document).ready(function(){
 //   var from,to,subject,text;
 //   $("#send_email").click(function(){
@@ -95,7 +100,7 @@
 //     });
 //   });
 // });
-//
+
  </script>
 
 </head>
@@ -108,13 +113,55 @@
 
     <div class = "form-group">
       <!-- <div id = "textarea1" ng-model = "new_lecture.lecture"> <p> </p></div> -->
-      <textarea id = "textarea1" ng-model = 'new_lecture.lecture'>
+      <!-- <textarea id = "textarea1" ng-model = 'new_lecture.lecture'>
+      </textarea> -->
 
 
-      </textarea>
+			<!-- Paper -->
+			<!-- <div class="paper">
+			  <div class="date serif">9/28/2012</div>
+			  <h1>Lorem ipsum and so on..</h1>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus sem vel mauris porttitor sit amet adipiscing odio interdum. Nunc non magna sit amet augue rutrum laoreet in in nulla. Nunc et malesuada orci. Sed metus enim, venenatis tincidunt tincidunt a, malesuada nec dolor. Nam volutpat, augue fringilla mattis venenatis, odio ipsum porta
+				</p>
+				<h2 class="center">Header center aligned</h2>
+				<p class="small">
+					Sapien, et tincidunt tortor erat quis nulla. Mauris dictum laoreet purus, et gravida magna aliquet quis. Phasellus sollicitudin tortor ut leo fringilla sed scelerisque diam suscipit. Donec non tortor id ante adipiscing tempus vitae et massa. Donec risus nisl, tincidunt quis facilisis blandit, lacinia vestibulum nulla.
+				</p>
+				<h3 class="serif">Paragraphs with different fonts</h3>
+				<p class="serif">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus sem vel mauris porttitor sit amet adipiscing odio interdum. Nunc non magna sit amet augue rutrum laoreet in in nulla.
+				</p>
+				<h1 class="center cursive">Fancy Header</h1>
+				<p class="cursive">
+					Nunc et malesuada orci. Sed metus enim, venenatis tincidunt tincidunt a, malesuada nec dolor. Nam volutpat, augue fringilla mattis venenatis, odio ipsum porta
+				</p>
+				<h3>New paragraph with indentation.</h3>
+				<p class="indent">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus sem vel mauris porttitor sit amet adipiscing odio interdum. Nunc non magna sit amet augue rutrum laoreet in in nulla. Nunc et malesuada orci. Sed metus enim, venenatis tincidunt tincidunt a, malesuada nec dolor. Nam volutpat, augue fringilla mattis venenatis, odio ipsum porta
+				</p>
+			  <p class="center">
+			    Tileable Wood pattern from <a href="http://subtlepatterns.com/tileable-wood/" target="_blank">Subtle Patterns</a><br>
+			    <strong>Love Subtle Patterns?</strong><br>
+			    Check out my  Chrome Extension: <a href="https://chrome.google.com/webstore/detail/cnhhinfdmnakglphgajbakokcdhmdinf" target="_blank">Subtle Patterns Preview</a>
+			  </p>
+			</div> -->
+
+			<!-- /Paper -->
+
+				<div class="editable" id = "textarea1" ng-model = 'new_lecture.lecture'>
+				</div>
+
+				<div id="notes"></div>
+
+				<script type="text/javascript">
+		      var editor = new MediumEditor('.editable');
+		      var elements = document.querySelectorAll('.editable'),
+		      editor = new MediumEditor(elements);
+		    </script>
 
       <div id = "msg">
-        <p>
+        <p class="copy-here">
 
 
         </p>
