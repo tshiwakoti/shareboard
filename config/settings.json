@@ -1,6 +1,5 @@
 {
   "mailer": {
-    "user" : "shareboard@outlook.com",
-    "password" : "'Mean1111"
+    "sendgrid": "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"
   }
 }

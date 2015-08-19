@@ -26,6 +26,13 @@ shareboardapp.factory('usersFactory', function($http){
     })
    }
 
+   factory.sendUserEmail = function(url, callback) {
+    $http.post('/send', { content: url }).
+      success(function(response) {
+        console.log(response)
+      }
+    )
+   }
 
    factory.addPresentation = function(info, callback){
      info.name = users[0];

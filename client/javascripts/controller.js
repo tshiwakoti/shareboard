@@ -40,11 +40,25 @@ shareboardapp.controller('login1', function($scope, $location, $routeParams,  us
     });
   };
 
-  $scope.addLecture = function(){
-    usersFactory.addLecture($scope.new_lecture, function(data){
-      //console.log(lecture);
-      $scope.lecture = data;
-    })
+  $scope.addAndSendLecture = function(data){
+    var current_url = $location.$$absUrl
+    console.log(data)
+    console.log(current_url)
+
+    usersFactory.sendUserEmail({ url: current_url, notes: data })
+  }
+  //
+  // $scope.sendEmail = function() {
+  //   // usersFactory.sendUserEmail(function(data) {
+  //     console.log($location)
+  //   // })
+  // }
+
+
+  $scope.sendEmail = function() {
+    console.log($location.$$absUrl)
+    var current_url = $location.$$absUrl
+    usersFactory.sendUserEmail({ url: current_url })
   }
 
   $scope.tolecture =function(id){

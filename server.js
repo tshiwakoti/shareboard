@@ -3,8 +3,6 @@ var path        = require('path'),
     bodyParser  = require("body-parser"),
     app         = express();
 
-var nodemailer = require('nodemailer');
-
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -19,59 +17,6 @@ require('./config/routes.js')(app);
 app.use(express.static(path.join(__dirname, './client')));
 
 //SOCKETS
-
-
-
-
-
-
-
-
-
-
-
-
-//mail check
-
-// var smtpTransport = nodemailer.createTransport("SMTP",{
-// service: "Outlook",
-// auth: {
-// user: "shareboard@outlook.com",
-// pass: "Mean1111"
-// }
-// });
-//
-//
-//
-// // app.get('/',function(req,res){
-// //   res.sendfile('index.html');
-// // });
-// app.get('/send',function(req,res){
-//   var mailOptions={
-//     to : req.query.to,
-//     subject : req.query.subject,
-//     text : req.query.text
-//   }
-//   console.log(mailOptions);
-//   smtpTransport.sendMail(mailOptions, function(error, response){
-//     if(error){
-//       console.log(error);
-//       res.end("error");
-//     }else{
-//       console.log("Message sent: " + response.message);
-//       res.end("sent");
-//     }
-//   });
-// });
-
-
-//until here
-
-
-
-
-
-
 var server = app.listen(8000, function(){
   console.log("listening on port 8000");
 })
