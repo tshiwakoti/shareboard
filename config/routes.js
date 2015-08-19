@@ -40,7 +40,7 @@ module.exports = function(shareboardapp){
     }
 
     var payload   = {
-      to      : 'puru@dahal.me',
+      to      : 'tshiwakoti@outlook.com',
       from    : 'shareboard@outlook.com',
       subject : 'You better read this notes.',
       text    :  text

@@ -56,7 +56,6 @@ shareboardapp.controller('login1', function($scope, $location, $routeParams,  us
 
 
   $scope.sendEmail = function() {
-    console.log($location.$$absUrl)
     var current_url = $location.$$absUrl
     usersFactory.sendUserEmail({ url: current_url })
   }
@@ -97,9 +96,6 @@ shareboardapp.controller('login1', function($scope, $location, $routeParams,  us
         console.log("Password didn't match");
       }
       $scope.loguser = data;
-      //console.log($scope.loguser);
-
-    //  $scope.userlogin = {};
 
     })
   }
