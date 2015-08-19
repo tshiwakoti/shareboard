@@ -1,8 +1,9 @@
 {
   "dependencies": {
-   "express": "~4.2.0",
-   "mongoose": "latest",
-   "body-parser": "latest",
-   "nodemailer" : "latest"
+    "body-parser": "latest",
+    "express": "~4.2.0",
+    "mongoose": "latest",
+    "nodemailer": "latest",
+    "socket.io": "^1.3.6"
   }
 }

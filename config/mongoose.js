@@ -4,7 +4,7 @@ var fs = require('fs');
 
 
 // connect to the database
-mongoose.connect('mongodb://localhost/shareboards');
+mongoose.connect('mongodb://localhost/shareboards_test');
 
 // specify the path to all of the models
 var models_path = __dirname + '/../server/models'

@@ -1,9 +1,72 @@
 
-<style>
-#textarea{
+<head>
+<script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type ="text/javascript">
+	$(document).ready(function (){
+		var socket = io.connect();
+		//jquery to append text message to div and send to server
+    $(document).keyup(function(){
+			// $(document).on('click', '#send', function(){
+				var text_val = $('#textarea1').val();
+				socket.emit("msg", {
+					message: $('#textarea1').val()
+				})
+        //console.log(e);
+		})
+
+
+
+
+
+
+
+
+
+		socket.on('newmsg', function(data){
+			var value = JSON.stringify(data.response.message)
+			var clean_string = value.replace(/\"/g, "")
+
+			// $('p').text(clean_string);
+			$('#textarea1').val(clean_string);
+		});
+
+
+
+		return false;
+
+	});
+
+</script>
+
+  <style>
+
+	#chatroom{
+		border: 1px solid grey;
+		margin: 100px 200px 0px 200px;
+		height: 250px;
+		padding: 10px 50px;
+	}
+
+	#newmessage{
+		border: 1px solid grey;
+		margin: 0px 200px;
+		height: 50px;
+		padding: 10px 50px;
+	}
+
+
+
+	#send{
+		background-color: green;
+		color: white;
+		width: 70px;
+		margin-left: 300px;
+	}
+
+#textarea1{
   width: 900px;
-  height: 400px;
-  border: 1px solid grey;
+  height: auto;
+
 }
 
 #margin{
@@ -12,15 +75,60 @@
 </style>
 
 
+  <script>
+//
+// $(document).ready(function(){
+//   var from,to,subject,text;
+//   $("#send_email").click(function(){
+//     to=$("#to").val();
+//     subject=$("#subject").val();
+//     text=$("#content").val();
+//     $("#message").text("Sending E-mail...Please wait");
+//     $.get("http://localhost:8000/send",{to:to,subject:subject,text:text},function(data){
+//       if(data=="sent")
+//       {
+//         $("#message").empty().html("
+//
+//         Email is been sent at '+to+' . Please check inbox !");
+//       }
+//
+//     });
+//   });
+// });
+//
+ </script>
+
+</head>
+
+
 
 <div ng-controller = "login1">
 
     <h4>Title:  {{title}} </h4>
 
     <div class = "form-group">
-      <textarea id = "textarea" ng-model = 'new_lecture.lecture'> </textarea>
+      <!-- <div id = "textarea1" ng-model = "new_lecture.lecture"> <p> </p></div> -->
+      <textarea id = "textarea1" ng-model = 'new_lecture.lecture'>
+
+
+      </textarea>
+
+      <div id = "msg">
+        <p>
+
+
+        </p>
+      </div>
       <a ng-click = 'addLecture()' type = "button" class="waves-effect waves-light btn">Submit</a>
     </div>
+
+
+  <!-- <input id="to" type="text" placeholder="to address" />
+  <input id="subject" type="text" placeholder="Write Subject" />
+  <textarea id="content" cols="40" rows="5" placeholder="Write what you want to send"></textarea>
+  <button id="send_email">Send Email</button>
+  <span id="message"></span> -->
+
 
 
     <a type = "button" class="waves-effect waves-light btn">Share</a>
