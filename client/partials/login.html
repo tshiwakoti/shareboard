@@ -1,7 +1,18 @@
 
+<nav>
+  <div class="nav-wrapper">
+    <a class="brand-logo">Shareboard</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href = "#/">Home</a></li>
+      <li><a href="#/about">About</a></li>
+      <li><a href ="#/"> LogOff </a> </li>
+
+    </ul>
+  </div>
+</nav>
+
+
 <style>
-
-
 
 #header{
   margin: 30px 100px;
@@ -21,31 +32,47 @@
 }
 
 </style>
-<div id = "wrapper">
-  <div ng-controller ="login1">
 
-    <div id = "header">
-      <h3> Shareboard </h3>
-      <h5> Ideas Sharing Platform and Online Classroom </h5>
-    </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('ul.tabs').tabs();
+});
+</script>
+
+
+<div class="row" ng-controller ="login1" id="session">
+  <div class="col s12">
+    <ul class="tabs">
+      <li class="tab col s3"><a class="active" href="#login">LOGIN</a></li>
+      <li class="tab col s3"><a href="#signup">SIGNUP</a></li>
+    </ul>
+  </div>
+  <div id="login" class="col s12">
+    <!-- Login -->
+
+    <h6 ng-bind = "error" style = "color: red"></h6>​
 
     <div id = 'login'>
       <div class ="form-group">
-        Email: <input type ="text" ng-model = "userlogin.email" value="ecartman@test.com">
-        Password: <input type = "text" ng-model= "userlogin.password" value="password">
+        Email: <input type ="text" ng-model = "userlogin.email" >
+        Password: <input type = "text" ng-model= "userlogin.password" >
         <input ng-click = "login()" type="submit" class="btn btn-primary" value="Login">​
       </div>
     </div>
+  </div>
 
+    <!-- Signup -->
+    <h6 ng-bind = "error" style = "color: red"></h6>​
+  <div id="signup" class="col s12">
     <div id = "register">
       <div class = "form-group" >
         Name: <input type = "text" ng-model = "newUser.name">
         Email: <input type = "email" ng-model = "newUser.email">
-        password : <input type = "text" ng-model = "newUser.password">
+        Password : <input type = "text" ng-model = "newUser.password">
         <input ng-click = 'register()' type="submit" class="btn btn-primary" value="Register">
       </div>
     </div>
-
   </div>
-
+</div>
 </div>

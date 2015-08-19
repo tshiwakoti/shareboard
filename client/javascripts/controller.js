@@ -6,13 +6,34 @@ shareboardapp.controller('login1', function($scope, $location, $routeParams,  us
   $scope.theLecture;
 
   $scope.register = function(){
+    console.log($scope.newUser);
+    if ($scope.newUser.name === ''|| !$scope.newUser.name)
+    {
+      //console.log("testtasfdasdfnaslkdfaskdflasdfasf");
+      $scope.error = "Name Cannot be Blank";
+    }
+    else if ($scope.newUser.email === ''|| !$scope.newUser.email)
+      {
+        //console.log("testtasfdasdfnaslkdfaskdflasdfasf");
+        $scope.error = "Email Cannot be Blank";
+      }
+    else if ($scope.newUser.password === ''|| !$scope.newUser.password)
+      {
+        //console.log("testtasfdasdfnaslkdfaskdflasdfasf");
+        $scope.error = "Password Cannot be Blank";
+      }
+    else{
     usersFactory.register($scope.newUser, function(data){
     //  console.log($scope.users);
+
+
       $scope.users = data;
       $scope.newUser = {};
-      $location.path('/')
+      $location.path('/login')
     });
-  };
+
+  }
+};
 
   usersFactory.getusers(function(data){
     $scope.loguser = data[0];
@@ -88,11 +109,13 @@ shareboardapp.controller('login1', function($scope, $location, $routeParams,  us
 
       if(data.usercheck === 'success')
       {
+        $scope.error = "User logged in";
         $location.path("/shareboard");
       }
 
       else if(data.usercheck === 'invalid')
       {
+        $scope.error = "Password didn't match. Please try again. ";
         console.log("Password didn't match");
       }
       $scope.loguser = data;

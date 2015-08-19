@@ -1,0 +1,69 @@
+<style>
+
+section {
+  position: relative;
+  height: 100vh;
+  z-index: 1;
+}
+
+#cover {
+  background-image: url('http://www.eyescreamlabs.com/wp-content/uploads/2014/06/blackboard.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  color: white;
+}
+
+.cover-text-button {
+  padding-top: 100px;
+}
+
+.cross {
+  text-decoration: line-through;
+}
+</style>
+
+
+
+</head>
+<body>
+<nav>
+  <div class="nav-wrapper">
+    <a class="brand-logo">Shareboard</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="#/about">About</a></li>
+      <li><a href="#/login">Signup</a></li>
+      <li><a href="#/login">Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="cover">
+  <div class="row">
+    <div class="col s8 offset-s4 grid-example">
+      <div class="cover-text-button">
+        <h3> It's <span class="typed"></span></h3>
+        <a class="btn-large col s6">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script type="text/javascript">
+$(function(){
+  $(".typed").typed({
+      strings: ["Blackboard", "Whiteboard", "Shareboard"],
+      typeSpeed: 0,
+      loop: true,
+      startDelay: 60,
+      preStringTyped: function() {
+        $('.typed').removeClass('cross')
+      },
+      onStringTyped: function() {
+        $('.typed').addClass('cross')
+      }
+    });
+  });
+</script>
