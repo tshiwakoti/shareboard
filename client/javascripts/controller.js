@@ -102,20 +102,22 @@ shareboardapp.controller('login1', function($scope, $location, $routeParams,  us
   $scope.login = function(){
     usersFactory.login($scope.userlogin, function(data){
       // console.log(data.success);
-      if(data == null)
+      console.log(data.usercheck);
+      if(!data)
       {
+        $scope.error1 = "User doesn't exists. Please sign up. "
         console.log("NO user");
       }
 
       if(data.usercheck === 'success')
       {
-        $scope.error = "User logged in";
+        $scope.error1 = "User logged in";
         $location.path("/shareboard");
       }
 
       else if(data.usercheck === 'invalid')
       {
-        $scope.error = "Password didn't match. Please try again. ";
+        $scope.error1 = "Password didn't match. Please try again. ";
         console.log("Password didn't match");
       }
       $scope.loguser = data;

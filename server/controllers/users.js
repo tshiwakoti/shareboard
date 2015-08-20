@@ -28,11 +28,13 @@ return {
       }
       else
       {
+        console.log(results);
         if(results == null)
         {
           console.log("No user associated with this email exits. Please sign up");
-          // results.usercheck = 'nouser';
-          // res.json(results);
+          //  results.usercheck = 'nouser';
+            res.end();
+
         }
         else
         {
