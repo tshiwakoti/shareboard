@@ -2,11 +2,11 @@
 var mongoose = require('mongoose');
 
 var lectureSchema = new mongoose.Schema({
-  username: String,
-  email: String,
+  author: String,
   title: String,
   lecture: String,
-  participants: String
+  participants: String,
+  created_at: {type: Date, default: Date.now }
 })
 
 mongoose.model('lecture', lectureSchema);

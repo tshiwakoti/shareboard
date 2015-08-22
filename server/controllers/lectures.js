@@ -2,14 +2,18 @@ var mongoose = require('mongoose');
 var lectures = mongoose.model('lecture');
 
 
+
+
 module.exports = (function() {
 return {
 
-  addLecture: function(req, res) {
-    var new_lecture= new lectures ({title: req.body.currenttitle,
-    lecture: req.body.lecture, username: req.body.username, participants: req.body.participants});
+  add: function(req, res) {
     console.log(req.body);
-    new_lecture.save(function(err, results){
+  var new_lecture = new lectures ({ author: req.body.username, title: req.body.title, participants : req.body.participants, lecture: req.body.body});
+  console.log('testing in server controller', req.body);
+
+  //check if user exits
+  new_lecture.save(function(err, results){
       if (err){
         console.log(err);
       }
@@ -21,8 +25,10 @@ return {
       });
     },
 
+
     showlectures: function(req, res){
-      lectures.find({}, function(err, results){
+      console.log('testing username in in lecture controller', req.body);
+      lectures.find({author: req.body.loggeduser }, function(err, results){
         if (err){
           console.log(err);
         }
@@ -33,7 +39,6 @@ return {
         }
       })
     }
-
 
   }
 })();

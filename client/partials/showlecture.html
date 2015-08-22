@@ -1,0 +1,57 @@
+
+
+
+<nav>
+  <div class="nav-wrapper">
+    <a class="brand-logo">Shareboard</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href = "#/">Home</a></li>
+      <li><a href="#/about">About</a></li>
+      <li><a href="#/login">Signup</a></li>
+      <li><a href ="#/"> LogOff </a> </li>
+    </ul>
+  </div>
+</nav>
+
+<div id = "wrapper" ng-controller = "login1">
+
+
+  <style>
+
+  #showlecture{
+    margin: 30px 100px;
+  }
+  #commentcomment{
+    margin-left: 50px;
+  }
+  #commentuser{
+    /*border: 30px;*/
+    margin: 20px 30px;
+  }
+
+  #lecture{
+    margin: 30px ;
+  }
+
+  </style>
+
+  <div id = "showlecture">
+
+
+    <h4> Title :  {{theLecture.title}} </h4>
+
+    <a href ="#lecture" class="waves-effect waves-light btn">Back to Presentations</a>
+
+    <div id = "lecture">
+      {{theLecture.lecture}}
+    </div>
+
+    <div id = "comments">
+      <h5 id = "commentuser"> user4 </h5>
+      <p id = "commentcomment"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt diam in velit tincidunt tristique. Sed ornare quam ligula, a tincidunt ante aliquam ac. Suspendisse lectus dolor, imperdiet nec ipsum ut, vulputate vehicula risus. Pellentesque varius massa sit  </p>
+      <h5 id = "commentuser"> user5 </h5>
+      <p id = "commentcomment"> amet est congue, malesuada congue purus varius. Nam nec ornare ante. Proin finibus urna vitae dolor scelerisque sagittis. Sed eu imperdiet ex, et ultricies elit. Suspendisse efficitur tellus sed purus efficitur, vel porttitor velit ultrices. </p>
+    </div>
+  </showlecture>
+
+</div>

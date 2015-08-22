@@ -1,45 +1,25 @@
 
-<style>
-#wrapper{
-  margin: 50px 80px;
-}
-#logoff, h3{
-  display: inline-block;
-}
 
-#logoff{
-  margin-left: 500px;
-}
-</style>
-<div class="row">
-    <div class="col s12 m8">
-      <div class="card-panel grey lighten-2">
-          <div  ng-controller = 'login1'>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('ul.tabs').tabs();
+});
+</script>
 
-          <div id = "wrapper">
-            <h2 ng-bind = "loguser.name"></h2>
-            <h3> Welcome  {{loguser}}</h3>
-            <!-- <input id = "logoff" type = "submit" value = "logofff"> -->
-            <a href = '/' > logoff </a>
-
-            <div class ="form-group">
-              <h4> Presentation Title </h4>
-              <input type = "text" ng-model = 'newPresentation.title'>
-              <h4> Participants <h4>
-              <input type = "text" ng-model = 'newPresentation.participants'>
-              <input ng-click = 'addPresentation()' type="submit" class="btn btn-primary" value="Create New Presentation">
-            </div>
-
-
-
-            <h4> Your Presentations </h4>
-            <div ng-repeat = "lecture in lectures">
-              <a ng-click="tolecture(lecture._id)" ng-bind = "lecture.title"> </a>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
+<div  ng-controller = 'login1'>
+<nav>
+  <div class="nav-wrapper">
+    <a class="brand-logo">Shareboard</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href = "#/">Home</a></li>
+      <li><a href="#/about">About</a></li>
+      <li><a href="#/login">Signup</a></li>
+      <li><a href ="#/"> LogOff </a> </li>
+    </ul>
   </div>
+</nav>
+
+<ul class="tabs">
+  <li class="tab col s3"><a class="active" href="#main">Create New presentation</a></li>
+  <li class="tab col s3"><a href="#listofp">Your Presentations</a></li>
+</ul>

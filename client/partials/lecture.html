@@ -1,149 +1,252 @@
 
 <head>
-<script type ="text/javascript" src="/socket.io/socket.io.js"></script>
-<script type ="text/javascript">
-	$(document).ready(function (){
-		//share on click test
+<style>
 
-
-		// $('#share').click(function(){
-			socketSync()
-			toggleShareState()
-		// });
-
-		function toggleShareState() {
-			console.log('changing color')
-			$('#share').toggleClass('grey')
-
-				// {
-				// 	"border-color": "white",
-        //   "border-weight":"1px",
-				// 	"background-color": 'red',
-        //   "border-style":"dashed"
-				// });
-		}
-
-
-		function socketSync() {
-
-			var socket = io.connect();
-
-			//jquery to append text message to div and send to server
-	    $(document).keyup(function(){
-				// $(document).on('click', '#send', function(){
-					// var text_val = $('#textarea1').val();
-					var text_val = $('#textarea1').html().replace(/\s+/g, " ");
-					socket.emit("msg", {
-						message: text_val
-					})
-	        //console.log(e);
-			})
-
-			$(document).click(function(){
-				// $(document).on('click', '#send', function(){
-					// var text_val = $('#textarea1').val();
-					var text_val = $('#textarea1').html().replace(/\s+/g, " ");
-					socket.emit("msg", {
-						message: text_val
-					})
-					//console.log(e);
-			})
-
-
-
-			socket.on('newmsg', function(data){
-				var value = JSON.stringify(data.response.message)
-				var clean_string = value.replace(/\"/g, "")
-
-				// $('p').text(clean_string);
-				// $('#notes').val(clean_string);
-				$('#notes').html(clean_string);
-			});
-		}
-
-
-
-		return false;
-
-	});
-
-</script>
-
-  <style>
-
-	#chatroom{
-		border: 1px solid grey;
-		margin: 100px 200px 0px 200px;
-		height: 250px;
-		padding: 10px 50px;
-	}
-
-	#newmessage{
-		border: 1px solid grey;
-		margin: 0px 200px;
-		height: 50px;
-		padding: 10px 50px;
-	}
-
-
-
-	#send{
-		background-color: green;
+/*#wrapper{
+	  background-image: url('http://www.eyescreamlabs.com/wp-content/uploads/2014/06/blackboard.jpg');
 		color: white;
-		width: 70px;
-		margin-left: 300px;
-	}
+
+
+}*/
+
+a.brand-logo{
+	margin-left: 100px;
+}
+
+#chatroom{
+	border: 1px solid grey;
+	margin: 100px 200px 0px 200px;
+	height: 250px;
+	padding: 10px 50px;
+}
+
+#newmessage{
+	border: 1px solid grey;
+	margin: 0px 200px;
+	height: 50px;
+	padding: 10px 50px;
+}
 
 #textarea1{
-  width: 900px;
-  height: auto;
+width: 980px;
+height: 600px;
+border: 1px solid grey;
+padding: 30px;
 
 }
 
-#margin{
-  margin: 100px;
+#sidebar{
+margin: 30px 100px;
+
 }
 
+#main{
+margin: 50px 100px;
+}
+
+#thead{
+background-color: grey:
+border: 1px solid;
+}
+
+#nav2{
+margin: 20px 0px;
+}
+
+#box{
+width: 300px;
+text-align: center;
+}
+
+#onlyvisitor{
+margin: 100px 100px 0px 100px;
+}
+
+#notes{
+	width: 980px;
+	height: 600px;
+	border: 1px solid grey;
+	padding: 30px;
+}
 </style>
 
+<script type="text/javascript">
+$(document).ready(function(){
+  $('ul.tabs').tabs();
+});
+</script>
+
+<script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type ="text/javascript">
+		$(document).ready(function (){
+
+				var socket = io.connect();
+		    $(document).keyup(function(){
+						var text_val = $('#textarea1').html().replace(/\s+/g, " ");
+						socket.emit("msg", {
+							message: text_val
+						})
+				})
+
+				$(document).click(function(){
+						var text_val = $('#textarea1').html().replace(/\s+/g, " ");
+						socket.emit("msg", {
+							message: text_val
+						})
+				})
+
+				socket.on('newmsg', function(data){
+					var value = JSON.stringify(data.response.message)
+					var clean_string = value.replace(/\"/g, "")
+					$('#notes').html(clean_string);
+				});
+			//}
+			return false;
+		});
+
+	</script>
 </head>
 
 
+	<div  ng-hide = "loguserid" ng-controller = "login1">
 
-<div ng-controller = "login1">
+		<div ng-hide = "loguser" id = "onlyvisitor">
+	  	<h4> Welcome to Shareboard. </h4>
+			<h5> Your Presenter has started the presentation. </h5>
+		</div>
+		<nav ng-show="loguser">
+		  <div class="nav-wrapper">
+		    <a class="brand-logo">Shareboard</a>
+		    <ul id="nav-mobile" class="right hide-on-med-and-down">
+		      <li><a href = "#/">Home</a></li>
+		      <li><a href="#/about">About</a></li>
+		      <li><a href="#/login">Signup</a></li>
+		      <li><a href ="#/"> LogOff </a> </li>
+		    </ul>
+		  </div>
+		</nav>
 
-    <h4>Title:  {{title}} </h4>
+		<div  class="col s12">
+			<ul ng-show="loguser" class="tabs">
+				<li ng-show="loguser" class="tab col s3"><a href="#sidebar">Presentations</a></li>
+				<li class="tab col s3"><a class="active" href="#main">New Presentation</a></li>
+			</ul>
+		</div>
 
-    <div class = "form-group">
 
-			<div class="row">
-				<div class="col s10" style="border: 1px solid black; padding: 20px;">
-					<div class="editable" id = "textarea1" ng-model = 'new_lecture.lecture'>
-					</div>
-				</div>
+		<div id = "main">
+
+			<div ng-show="loguser" id ="hidefromother">
+				<h4> Welcome {{loguser}} </h4>
 			</div>
 
-			<div class="row">
-				<div class="col s10">
-		      <a ng-click = 'addAndSendLecture("this is the lecture")' type = "button" class="waves-effect waves-light btn right">Submit</a>
-			    <a id = "share" ng-click = 'sendEmail()' type = "button" class="waves-effect waves-light grey btn right">Share <i class="fa fa-share-alt"></i></i></a>
-				</div>
-			</div>
 
-				<div id="notes"></div>
+	    <form class = "form-group">
 
-				<script type="text/javascript">
-		      var editor = new MediumEditor('.editable');
-		      var elements = document.querySelectorAll('.editable'),
-		      editor = new MediumEditor(elements);
-		    </script>
+				<div ng-show="loguser" id = "title&participants">
+					Presentations Title : <input type = "text" ng-model = 'lecture.title'>
+					Participants (Seperate Email addresses by comma): <input type = "text" ng-model = 'lecture.participants'>
+		  	</div>
+						<input ng-show="loguser" ng-click = "sendRequest()" type="submit" class="btn btn-primary" value="Send Request">​
 
-      <div id = "msg">
-        <p class="copy-here">
+						<div ng-show="loguser" id = "nav2">
+							<nav >
+						    <div class="nav-wrapper">
+						      <ul id="nav-mobile" class="left hide-on-med-and-down">
+						        <li><a  id = "box" href=""> Text </a></li>
+						        <li><a  id = "box" href=""> Math </a></li>
+						        <li><a  id = "box"  href=""> Shapes </a></li>
+						      </ul>
+						    </div>
+						  </nav>
+						</div>
 
+						<div ng-show="loguser" class="row">
+							<!-- <div class="col s10" style="border: 1px solid black; padding: 20px;"> -->
+								<div ng-model = "lecture.body" class="editable"
+									 id = "textarea1">
+						</div>
+						</div>
 
-        </p>
-      </div>
-    </div>
+						<div class="row">
+							<div class="col s10">
+								<a ng-show="loguser" id = "fullscreen" class="waves-effect waves-light btn">Make FullScreen</a>
+								<input ng-show="loguser" ng-click = "addLecture()" type="submit" class="btn btn-primary" value="Submit">​
+							</div>
+						</div>
 
+						<div ng-hide="loguser" id="notes"></div>
+
+						<script type="text/javascript">
+				      var editor = new MediumEditor('.editable');
+				      var elements = document.querySelectorAll('.editable'),
+				      editor = new MediumEditor(elements);
+				    </script>
+
+			      <div id = "msg">
+			        <p  ng-show="loguser" ng-model = "lecture.body"  class="copy-here"> </p>
+			      </div>
+
+	    </form>
+		</div>
+
+		<div id = "sidebar">
+			<h5> Your Presentaions </h5>
+
+			<input type="text" ng-model="name_filter" placeholder="search " class="pull-right">​
+					<table class="striped">​​
+		  			<thead id ="thead">​
+		  				<tr>​
+		  					<th>Lecture Title </th>​
+								<th> Participants Email </th>
+								<th> Lecture </th>
+								<th> Date  </th>
+		  				</tr>​
+		  			</thead>​
+		  			<tbody>​
+		  				<tr ng-repeat="lecture in lectures  | filter: name_filter">​
+		  					<td><a ng-click="tolecture(lecture._id)" ng-bind = "lecture.title"> </a></td>​
+								<td><span ng-bind = "lecture.participants"> </span> </td>
+								<td><span ng-bind = "lecture.lecture"> </span> </td>
+								<td><span ng-bind  = "lecture.created_at | date:'MMMM d yyyy'"> </span></td>
+		  				</tr>​
+		  			</tbody>​
+		  		</table>​
+			<h5> Seperate Email addresses by comma </h5>
+
+			<input type="text" ng-model="presentations" placeholder="search " class="pull-right">​
+			<table class="striped">​​
+
+					<thead id ="thead">​
+						<tr>​
+							<th>Author</th>​
+							<th>Lecture Title </th>​
+							<th> Lecture </th>
+							<th> Date  </th>
+						</tr>​
+					</thead>​
+					<tbody ng-model = "presentations">​
+
+						<tr>​
+							<td> Adam </td>​
+							<td>  <a href = "" > CodeIgnitier Installation Instructions </a></td>​
+							<td>CodeIgniter is installed in four steps:
+									Unzip the package.
+									Upload the CodeIgniter folders and files to your server. Normally the index.php file will be at your root.
+									Open the application/config/config.php file with a text editor and set your base URL. If you intend to use encryption or sessions, set your encryption key.
+									If you intend to use a database, open the application/config/database.php file with a text editor and set your database settings.</td>
+							<td> June 20, 2014</td>
+						</tr>​
+						<tr>​
+							<td> Tutorial Point </td>​
+							<td>  <a href = "" > Overview of JavaScript Arrow Functions</a></td>​
+							<td> One of the exciting new additions to ECMAscript 6 is Arrow Functions,
+								 	a compact way to define anonymous functions that also simplifies the handling
+								  of the "this" object inside it. In this tutorial we'll go over all you need
+									 to know about the new function syntax before it supplants anonymous functions everywhere. </td>
+							<td> June 20, 2014</td>
+						</tr>​
+					</tbody>​
+				</table>​
+		</div>
 </div>

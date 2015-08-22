@@ -1,12 +1,14 @@
+
+<head>
 <style>
 
-section {
+.section {
   position: relative;
   height: 100vh;
   z-index: 1;
 }
 
-#cover {
+.ng-scope {
   background-image: url('http://www.eyescreamlabs.com/wp-content/uploads/2014/06/blackboard.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -22,9 +24,20 @@ section {
 .cross {
   text-decoration: line-through;
 }
+
+#typed{
+  margin: 50px 20px;
+}
+
+#typed2{
+  margin-left: 100px;
+}
+
 </style>
 
-
+<!--
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular-animate.js"></script> -->
 
 </head>
 <body>
@@ -39,31 +52,57 @@ section {
   </div>
 </nav>
 
+
 <section id="cover">
   <div class="row">
     <div class="col s8 offset-s4 grid-example">
       <div class="cover-text-button">
-        <h3> It's <span class="typed"></span></h3>
-        <a class="btn-large col s6">Get Started</a>
+        <h2 id = "typed"> It's <span class="typed"></span></h2>
+         <h5 id ="typed2"> <span class="typed2"></span></h5>
+        <a href = "#login" class="btn-large col s6">Get Started</a>
       </div>
     </div>
   </div>
 </section>
 
 
-<script type="text/javascript">
+<script type ="text/javascript">
+
+ var i = 0;
 $(function(){
   $(".typed").typed({
       strings: ["Blackboard", "Whiteboard", "Shareboard"],
-      typeSpeed: 0,
-      loop: true,
+      typeSpeed: -3,
+      loop: false,
       startDelay: 60,
       preStringTyped: function() {
         $('.typed').removeClass('cross')
       },
       onStringTyped: function() {
-        $('.typed').addClass('cross')
+        if (i <2){
+        $('.typed').addClass('cross');
+        i++
+      }
+      else {
+        {
+          $('.typed').removeClass('cross')
+        }
+      }
       }
     });
   });
-</script>
+
+// $(function(){
+//   $(".typed2").typed({
+//       strings: ["21's Century Ideas Sharing Platform & Online Classroom"],
+//       typeSpeed: -3,
+//       loop: false,
+//       startDelay: 3000
+//       preStringTyped: function() {
+//         $('.typed').removeClass('cross')
+//       }
+//
+//     })
+//   });
+  </script>
+</body>

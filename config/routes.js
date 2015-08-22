@@ -7,7 +7,7 @@ var lectures = require('./../server/controllers/lectures.js');
 module.exports = function(shareboardapp){
 
   shareboardapp.post('/addUser', function(req, res){
-    console.log(req.body);
+  //  console.log(req.body);
     users.addUser(req, res);
   })
 
@@ -18,37 +18,80 @@ module.exports = function(shareboardapp){
   })
 
   shareboardapp.post('/addLecture', function(req, res){
+    console.log('in server routes');
     console.log(req.body);
-    lectures.addLecture(req, res);
-  })
 
-  shareboardapp.get('/showlectures', function(req, res){
+    var emailData = req.body;
+    sendtest(emailData);
+    lectures.add(req,res);
+     })
+
+  shareboardapp.post('/showlectures', function(req, res){
     lectures.showlectures(req, res);
-    console.log(req.body);
   })
 
-  shareboardapp.post('/send', function(req, res) {
-    console.log(req.body)
-    var url = req.body.content.url
-    var notes = req.body.content.notes
-    console.log(notes)
+  shareboardapp.post('/sendRequest', function(req, res){
+    console.log('Testing Send Request');
+    console.log(req.body);
 
-    if(notes == null) {
-      var text = 'Please read this notes on url: ' + url
-    } else {
-      var text = 'Please read this notes on url: ' + url + ' ' + '\n <b>Lectures:</b> ' + notes
-    }
+
+    var participants = req.body.participants;
+    var author = req.body.presenter;
+    var title = req.body.title;
+    var url = req.body.current_url;
+
+
+    console.log(participants);
+    console.log(author);
+    console.log(title);
+    console.log(url);
+
+
+    var emailArray = new Array();
+    emailArray = participants.split(",");
+
+    console.log("Email list");
+    console.log(emailArray);
 
     var payload   = {
-      to      : 'tshiwakoti@outlook.com',
-      from    : 'shareboard@outlook.com',
-      subject : 'You better read this notes.',
-      text    :  text
-    }
+         to      : emailArray,
+         from    : 'shareboard@outlook.com',
+         subject :  'SHAREBOARD:  ' + author + ' has started a presentation',
+         text    :  'Your presenter ' + author + ' has started a presentation. "' + title + '".  You can check the presentation at following url :  ' + url
+       }
 
-    sendgrid.send(payload, function(err, json) {
-      if (err) { console.error(err); }
-      console.log(json);
-    });
+       sendgrid.send(payload, function(err, json) {
+         if (err) { console.error(err); }
+         console.log(json);
+       });
   })
-};
+
+
+  var sendtest = function (emailData){
+    console.log('testing email');
+    console.log(emailData);
+
+    var participants = emailData.participants;
+
+    var emailArray = new Array();
+    emailArray = participants.split(",");
+
+    console.log("Email list");
+    console.log(emailArray);
+
+    var payload   = {
+         to      : emailArray,
+         from    : 'shareboard@outlook.com',
+         subject : 'Email from Shareboard.' + emailData.title,
+         text    :  emailData.body
+       }
+
+       sendgrid.send(payload, function(err, json) {
+         if (err) { console.error(err); }
+         console.log(json);
+       });
+
+  }
+
+
+ };

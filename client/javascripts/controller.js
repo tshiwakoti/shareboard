@@ -6,7 +6,7 @@ shareboardapp.controller('login1', function($scope, $location, $routeParams,  us
   $scope.theLecture;
 
   $scope.register = function(){
-    console.log($scope.newUser);
+    //console.log($scope.newUser);
     if ($scope.newUser.name === ''|| !$scope.newUser.name)
     {
       //console.log("testtasfdasdfnaslkdfaskdflasdfasf");
@@ -31,58 +31,44 @@ shareboardapp.controller('login1', function($scope, $location, $routeParams,  us
       $scope.newUser = {};
       $location.path('/login')
     });
-
   }
 };
 
   usersFactory.getusers(function(data){
     $scope.loguser = data[0];
-  //  console.log(loguser);
+    //console.log(loguser);
   })
 
-  usersFactory.getTitle(function(data){
-    $scope.title = data[0];
-  //  console.log($scope.title);
-  })
-
-  usersFactory.getAllLecture(function(data){
-    $scope.lecture = data;
-    console.log("All lecture data here");
-    console.log(data);
-  })
-
-  $scope.addPresentation = function(){
-    console.log($scope.newPresentation);
-    usersFactory.addPresentation($scope.newPresentation, function(data){
-      console.log($scope.newPresentation);
-      $scope.presentations = data;
-      console.log($scope.presentations);
+  $scope.addLecture = function(){
+    var test = document.getElementById('textarea1').innerHTML;
+    console.log(test);
+    console.log($scope.lecture.body);
+    $scope.lecture.lecture = test;
+  //  console.log($scope.newPresentation);
+    usersFactory.addLecture($scope.lecture, function(data){
+      console.log($scope.lecture);
+      $scope.lecture = data;
+      // console.log($scope.presentations);
       $location.url('/lecture');
     });
   };
 
-  $scope.addAndSendLecture = function(data){
-    var current_url = $location.$$absUrl
-    console.log(data)
-    console.log(current_url)
+   var randomNumber = Math.floor(100000 + Math.random() * 900000);
 
-    usersFactory.sendUserEmail({ url: current_url, notes: data })
-  }
-  //
-  // $scope.sendEmail = function() {
-  //   // usersFactory.sendUserEmail(function(data) {
-  //     console.log($location)
-  //   // })
-  // }
+  var url = $location.$$absUrl.concat('/')
+  var current_url = url.concat(randomNumber);
+  console.log(current_url);
 
-
-  $scope.sendEmail = function() {
-    var current_url = $location.$$absUrl
-    usersFactory.sendUserEmail({ url: current_url })
+  $scope.sendRequest = function(){
+    $scope.lecture.current_url = current_url;
+    usersFactory.sendRequest($scope.lecture, function(data){
+      $scope.lecture = data;
+      console.log($scope.lecture);
+    })
   }
 
   $scope.tolecture =function(id){
-    var lectureId = "/chatroom/" + id;
+    var lectureId = "/showlecture/" + id;
     $location.path(lectureId);
   }
 
@@ -101,24 +87,20 @@ shareboardapp.controller('login1', function($scope, $location, $routeParams,  us
 
   $scope.login = function(){
     usersFactory.login($scope.userlogin, function(data){
-      // console.log(data.success);
-      console.log(data.usercheck);
       if(!data)
       {
         $scope.error1 = "User doesn't exists. Please sign up. "
-        console.log("NO user");
       }
 
       if(data.usercheck === 'success')
       {
         $scope.error1 = "User logged in";
-        $location.path("/shareboard");
+        $location.path("/lecture");
       }
 
       else if(data.usercheck === 'invalid')
       {
         $scope.error1 = "Password didn't match. Please try again. ";
-        console.log("Password didn't match");
       }
       $scope.loguser = data;
 

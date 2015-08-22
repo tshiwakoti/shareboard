@@ -14,65 +14,52 @@
 
 <style>
 
-#header{
-  margin: 30px 100px;
-  color: green;
-}
-#login, #register{
+#login, #signup{
   display: inline-block;
   width: 400px;
-  margin-top: 50px;
+  margin: 50px 350px;
   vertical-align: top;
 }
-#login{
-  margin-left: 100px;
-}
-#register{
-  margin-left: 100px;
-}
+
 
 </style>
 
 
 <script type="text/javascript">
-$(document).ready(function(){
-  $('ul.tabs').tabs();
-});
+  $(document).ready(function(){
+    $('ul.tabs').tabs();
+  });
 </script>
 
 
-<div class="row" ng-controller ="login1" id="session">
+<div class="row" ng-controller ="login1">
   <div class="col s12">
     <ul class="tabs">
       <li class="tab col s3"><a class="active" href="#login">LOGIN</a></li>
       <li class="tab col s3"><a href="#signup">SIGNUP</a></li>
     </ul>
   </div>
+
+  <!-- Login -->
   <div id="login" class="col s12">
-    <!-- Login -->
-
     <h6 ng-bind = "error1" style = "color: red"></h6>​
-
-    <div id = 'login'>
       <div class ="form-group">
         Email: <input type ="text" ng-model = "userlogin.email" >
-        Password: <input type = "text" ng-model= "userlogin.password" >
+        Password: <input type = "password" ng-model= "userlogin.password" >
         <input ng-click = "login()" type="submit" class="btn btn-primary" value="Login">​
       </div>
-    </div>
   </div>
 
-    <!-- Signup -->
-    <h6 ng-bind = "error" style = "color: red"></h6>​
+  <!-- Sign Up -->
+
   <div id="signup" class="col s12">
-    <div id = "register">
+    <h6 ng-bind = "error" style = "color: red"></h6>​
       <div class = "form-group" >
         Name: <input type = "text" ng-model = "newUser.name">
         Email: <input type = "email" ng-model = "newUser.email">
-        Password : <input type = "text" ng-model = "newUser.password">
+        Password : <input type = "password" ng-model = "newUser.password">
         <input ng-click = 'register()' type="submit" class="btn btn-primary" value="Register">
       </div>
-    </div>
   </div>
 </div>
 </div>

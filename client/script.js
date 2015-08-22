@@ -10,14 +10,17 @@ shareboardapp.config(function($routeProvider){
   .when('/login', {
     templateUrl: './partials/login.html'
   })
-  .when('/shareboard', {
-    templateUrl: './partials/shareboard.html'
-  })
   .when('/lecture', {
     templateUrl: './partials/lecture.html'
   })
-  .when('/chatroom/:id', {
-    templateUrl: './partials/chatroom.html'
+  // .when('/lecture', {
+  //   redirectTo: './partial/lecture.html'
+  // })
+  .when('/lecture/:number', {
+    templateUrl: './partials/lecture.html'
+  })
+  .when('/showlecture/:id', {
+    templateUrl: './partials/showlecture.html'
   })
   .when('/about', {
     templateUrl: './partials/about.html'

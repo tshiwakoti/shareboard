@@ -32,9 +32,7 @@ return {
         if(results == null)
         {
           console.log("No user associated with this email exits. Please sign up");
-          //  results.usercheck = 'nouser';
             res.end();
-
         }
         else
         {
@@ -48,16 +46,11 @@ return {
               results.usercheck = 'success';
               res.json(results);
             }
-
         }
-        // console.log(results);
-        // res.json(results);
       }
 
-      });
+  });
 }
-
-
 
   }
 })();
