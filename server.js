@@ -30,10 +30,10 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('msg', function (data){
+    console.log('Your societ data is:', {response: data});
     socket.broadcast.emit('newmsg', {response: data});
   });
 
   console.log("WE ARE USING SOCKETS!");
   console.log(socket.id);
-  // console.log({response: data});
 });

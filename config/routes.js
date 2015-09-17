@@ -69,7 +69,7 @@ module.exports = function(shareboardapp){
 
   var sendtest = function (emailData){
     console.log('testing email');
-    console.log(emailData);
+    console.log("email data yooooooo:-", emailData);
 
     var participants = emailData.participants;
 
@@ -83,12 +83,12 @@ module.exports = function(shareboardapp){
          to      : emailArray,
          from    : 'shareboard@outlook.com',
          subject : 'Email from Shareboard.' + emailData.title,
-         text    :  emailData.body
+         html    :  emailData.lecture
        }
 
        sendgrid.send(payload, function(err, json) {
          if (err) { console.error(err); }
-         console.log(json);
+         console.log('Email contents:-', payload);
        });
 
   }

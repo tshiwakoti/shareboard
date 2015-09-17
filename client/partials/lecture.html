@@ -100,7 +100,7 @@ $(document).ready(function(){
 					var clean_string = value.replace(/\"/g, "")
 					$('#notes').html(clean_string);
 				});
-			//}
+			// }
 			return false;
 		});
 
@@ -137,7 +137,7 @@ $(document).ready(function(){
 		<div id = "main">
 
 			<div ng-show="loguser" id ="hidefromother">
-				<h4> Welcome {{loguser}} </h4>
+				<h4> Welcome {{loguser || 'yo'}} </h4>
 			</div>
 
 

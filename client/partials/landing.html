@@ -67,10 +67,10 @@
 
 
 <script type ="text/javascript">
+  $(document).ready(function() {
+    var i = 0;
 
- var i = 0;
-$(function(){
-  $(".typed").typed({
+    $(".typed").typed({
       strings: ["Blackboard", "Whiteboard", "Shareboard"],
       typeSpeed: -3,
       loop: false,
@@ -90,19 +90,15 @@ $(function(){
       }
       }
     });
-  });
 
-// $(function(){
-//   $(".typed2").typed({
-//       strings: ["21's Century Ideas Sharing Platform & Online Classroom"],
-//       typeSpeed: -3,
-//       loop: false,
-//       startDelay: 3000
-//       preStringTyped: function() {
-//         $('.typed').removeClass('cross')
-//       }
-//
-//     })
-//   });
+    // $(".typed2").typed({
+    //   strings: ["21's Century Ideas Sharing Platform & Online Classroom"],
+    //   typeSpeed: -3,
+    //   loop: false,
+    //   preStringTyped: function() {
+    //     $('.typed').removeClass('cross')
+    //   }
+    // })
+  })
   </script>
 </body>

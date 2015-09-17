@@ -35,7 +35,7 @@ shareboardapp.controller('login1', function($scope, $location, $routeParams,  us
 };
 
   usersFactory.getusers(function(data){
-    $scope.loguser = data[0];
+    $scope.loguser = data;
     //console.log(loguser);
   })
 
