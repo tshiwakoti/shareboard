@@ -5,5 +5,26 @@
     "mongoose": "latest",
     "sendgrid": "^1.9.2",
     "socket.io": "^1.3.6"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "shareboard_test",
+  "version": "1.0.0",
+  "description": "Sharboard",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tshiwakoti/shareboard.git"
+  },
+  "keywords": [
+    "Shareboard"
+  ],
+  "author": "Tej Shiwakoti",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tshiwakoti/shareboard/issues"
+  },
+  "homepage": "https://github.com/tshiwakoti/shareboard#readme"
 }
