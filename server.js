@@ -2,6 +2,7 @@ var path        = require('path'),
     express     = require("express"),
     bodyParser  = require("body-parser"),
     app         = express();
+    port        = process.env.PORT || 8000;
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -17,7 +18,7 @@ require('./config/routes.js')(app);
 app.use(express.static(path.join(__dirname, './client')));
 
 //SOCKETS
-var server = app.listen(8000, function(){
+var server = app.listen(port, function(){
   console.log("listening on port 8000");
 })
 
