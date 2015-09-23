@@ -4,7 +4,8 @@ var fs = require('fs');
 
 
 // connect to the database
-mongoose.connect('mongodb://localhost/shareboards_test');
+// mongoose.connect('mongodb://localhost/shareboards_test');
+mongoose.connect(process.env.MONGOLAB_URI);
 
 // specify the path to all of the models
 var models_path = __dirname + '/../server/models'
